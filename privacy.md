@@ -77,7 +77,7 @@ We do NOT sell your data. We do NOT share it with data brokers.
 
 ### Everyone
 - **Access** — email [fcct.support@gmail.com](mailto:fcct.support@gmail.com) and we'll send you a copy of your data
-- **Delete** — Settings → Account → Delete account (when we ship account deletion) OR email us. We delete within 30 days.
+- **Delete** — Settings → Account → Delete my account (in-app), OR email us. Full instructions and email-based path: [Account & Data Deletion](./data-deletion/). We act within 7 days and complete within 30 days.
 - **Correct** — for account info, edit in Settings; for anything else, email us.
 
 ### EEA / UK residents
