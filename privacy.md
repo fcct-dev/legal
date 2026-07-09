@@ -15,20 +15,24 @@ permalink: /privacy/
 
 Fraud Call Center Tycoon ("FCCT," "the game," "we") is a satirical idle-tycoon mobile game about a fictional call-center operation. All characters, schemes, and victims depicted are fictional. The game is intended for a mature audience (13+ per Google Play content rating).
 
+**Important Safety Disclaimer:** The game is a local simulation. It does not dial real phone numbers, send actual SMS/text messages, connect to cellular telephone networks, or interact with your device's actual phone dialer, contacts, or call logs in any way. All "calls" and "schemes" are fully virtual, simulated in-game text and animations.
+
 ## 2. Information we collect
 
 We collect only the minimum needed to run the game, keep it working, and improve it.
 
+*Note: If you play using a "Guest" account, your game progress is stored only locally on your device, and no personal account identifiers or email addresses are sent to our servers.*
+
 | Category | Examples | Purpose | Retention |
 |---|---|---|---|
-| **Account** | Firebase Auth user ID (uid), email if you use Email sign-in, Google account ID if you use Google Sign-In | Log you in, sync your save across devices | Until you delete your account or 24 months of inactivity |
-| **Save data** | Your in-game progress: cash balances, workers, upgrades, schemes, timestamps | Cloud-save so you don't lose progress if you switch devices | Same as account |
+| **Account** | Firebase Auth user ID (uid), email if you use Email sign-in, Google account ID if you use Google Sign-In | Log you in, sync your save across devices (does not apply to Guest accounts) | Until you delete your account or 24 months of inactivity |
+| **Save data** | Your in-game progress: cash balances, workers, upgrades, schemes, timestamps | Cloud-save so you don't lose progress if you switch devices (does not apply to Guest accounts) | Same as account |
 | **Analytics events** | Session start/end, mammoth conversions (20% sampled), raid outcomes, laundering unlocks, prestige, boost purchases, errors | Understand which features work and which cause problems | 14 months (Google Analytics default) |
 | **Advertising ID** | Android Advertising ID (AAID) via AdMob | Personalized ads (opt-in via consent form), frequency capping, fraud prevention | 12 months after last use |
 | **Approximate location** | Derived from IP address, country + region only (not GPS) | Regional ad compliance (GDPR/CCPA gating), currency detection | Session-only |
 | **Device info** | OS version, device model, app version, language | Debug crashes, plan support | 90 days |
 
-**We do NOT collect:** precise GPS location, phone contacts, call logs, SMS, photos, microphone input, browsing history outside the app.
+**We do NOT collect or access:** your device's precise GPS location, real phone contacts, real call logs, SMS/text messages, photos, microphone input, or web browsing history.
 
 ## 3. Legal bases (GDPR, if you're in the EEA/UK)
 
