@@ -1,0 +1,78 @@
+---
+layout: default
+title: Account & Data Deletion — Fraud Call Center Tycoon
+permalink: /data-deletion/
+---
+
+# Account & Data Deletion — Fraud Call Center Tycoon
+
+**Effective date:** 2026-07-09
+**Publisher:** FCCT Studio
+**Contact:** [fcct.support@gmail.com](mailto:fcct.support@gmail.com)
+**App package:** `com.fcctstudio.callcentertycoon`
+
+If you signed up for a Fraud Call Center Tycoon ("FCCT") account, you have the right to delete that account and its associated data at any time. This page explains **what gets deleted, how to request deletion, and how long it takes**.
+
+## 1. Fastest path — delete in the app
+
+1. Open FCCT.
+2. Tap the ⚙ **Settings** button.
+3. Scroll to the **Account** section.
+4. Tap **🗑 Delete my account**.
+5. Type **DELETE** to confirm.
+
+Your account and its data are removed immediately. You will be signed out and returned to the login screen.
+
+Guests (players who chose "Continue without login") have no server-side account — their progress lives only on-device and is removed by uninstalling the app or by tapping **Danger Zone → Restart game from scratch** in Settings.
+
+## 2. Alternative — email request
+
+If you cannot access the app (for example, you uninstalled it, lost the device, or the in-app option is unavailable):
+
+Send an email to **[fcct.support@gmail.com](mailto:fcct.support@gmail.com)** from the address you used to sign up (or Google account address used for Google Sign-In) with the subject line:
+
+> **Delete my FCCT account**
+
+Include:
+
+- The email address linked to your FCCT account.
+- (Optional) your in-game display name.
+
+We will verify identity by confirming the request comes from the linked email address, then delete your account. If verification fails (for example, the email address isn't linked to any account), we will reply explaining why and, if applicable, ask for a follow-up detail.
+
+**Service level:** we act on verified requests within **7 days** and complete deletion within **30 days** of receipt.
+
+## 3. What gets deleted
+
+| Data | Where it lives | Deleted |
+|---|---|---|
+| Firebase Auth account (uid, email, hashed password if any) | Google Firebase Auth | Immediately |
+| Cloud save (in-game progress, cash, workers, upgrades) | Firestore `users/{uid}/save/latest` | Immediately |
+| Local save on this device | On-device file `save.json` | Immediately (in-app path) |
+| Local account metadata on this device | On-device file `account.json` | Immediately (in-app path) |
+
+## 4. What is retained (and why)
+
+Some data is retained temporarily even after account deletion. These records are stripped of identifiers we control, and are held only for the legally-permitted retention windows below.
+
+| Data | Purpose | Retention |
+|---|---|---|
+| Anonymized analytics events (via Google Analytics for Firebase) | Understand aggregate feature usage; required for our ability to improve the game | **14 months** (Google Analytics default) |
+| Ad measurement records (via Google AdMob) | Fraud prevention, aggregate advertising performance | **12 months** after last activity |
+| Transaction records (once in-app purchases launch) | Legal obligation (tax records) | As required by applicable tax law, typically 7 years |
+
+These records do not contain your name, email, or Firebase uid after deletion — they persist only in aggregated / anonymized form.
+
+## 5. Third parties
+
+We do not sell your data. We do not share it with data brokers. The only third parties who receive data are the vendors listed in the [Privacy Policy §6](./privacy/#6-third-parties-we-share-data-with) — each acts under Google's terms of service and honors deletion via their own retention policies.
+
+## 6. Questions
+
+Email **[fcct.support@gmail.com](mailto:fcct.support@gmail.com)**. We aim to respond within 3 business days.
+
+---
+
+## Change log
+
+- **2026-07-09** — initial publication.
