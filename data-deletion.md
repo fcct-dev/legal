@@ -53,19 +53,19 @@ We will verify identity by confirming the request comes from the linked email ad
 
 ## 4. What is retained (and why)
 
-Some data is retained temporarily even after account deletion. These records are stripped of identifiers we control, and are held only for the legally-permitted retention windows below.
+Some data may be retained temporarily even after account deletion. We keep it only for the limited purposes and retention windows below, and we delete, aggregate, or anonymize account-linked records where technically feasible.
 
 | Data | Purpose | Retention |
 |---|---|---|
-| Anonymized analytics events (via Google Analytics for Firebase) | Understand aggregate feature usage; required for our ability to improve the game | **14 months** (Google Analytics default) |
-| Ad measurement records (via Google AdMob) | Fraud prevention, aggregate advertising performance | **12 months** after last activity |
+| Custom gameplay telemetry in Firestore | Understand aggregate feature usage, diagnose errors, prevent abuse, and improve balance | Up to **14 months**, then deleted or aggregated where feasible |
+| Ad measurement records (via Google AdMob, when ads are enabled) | Fraud prevention, aggregate advertising performance | As retained under Google's AdMob policies; we keep only minimal placement/reward records if needed |
 | Transaction records (once in-app purchases launch) | Legal obligation (tax records) | As required by applicable tax law, typically 7 years |
 
-These records do not contain your name, email, or Firebase uid after deletion — they persist only in aggregated / anonymized form.
+After account deletion, retained telemetry is no longer used as active account data. Where technically feasible, we delete or anonymize records linked to your Firebase uid; otherwise we keep only restricted backend logs for the limited purposes and retention windows above.
 
 ## 5. Third parties
 
-We do not sell your data. We do not share it with data brokers. The only third parties who receive data are the vendors listed in the [Privacy Policy §6](./privacy/#6-third-parties-we-share-data-with) — each acts under Google's terms of service and honors deletion via their own retention policies.
+We do not sell your data. We do not share it with data brokers. The only third parties who receive data are the vendors listed in the [Privacy Policy §6](../privacy/#6-third-parties-we-share-data-with) — each acts under Google's terms of service and honors deletion via their own retention policies.
 
 ## 6. Questions
 

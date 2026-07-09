@@ -27,25 +27,25 @@ We collect only the minimum needed to run the game, keep it working, and improve
 |---|---|---|---|
 | **Account** | Firebase Auth user ID (uid), email if you use Email sign-in, Google account ID if you use Google Sign-In | Log you in, sync your save across devices (does not apply to Guest accounts) | Until you delete your account or 24 months of inactivity |
 | **Save data** | Your in-game progress: cash balances, workers, upgrades, schemes, timestamps | Cloud-save so you don't lose progress if you switch devices (does not apply to Guest accounts) | Same as account |
-| **Analytics events** | Session start/end, mammoth conversions (20% sampled), raid outcomes, laundering unlocks, prestige, boost purchases, errors | Understand which features work and which cause problems | 14 months (Google Analytics default) |
-| **Advertising ID** | Android Advertising ID (AAID) via AdMob | Personalized ads (opt-in via consent form), frequency capping, fraud prevention | 12 months after last use |
-| **Approximate location** | Derived from IP address, country + region only (not GPS) | Regional ad compliance (GDPR/CCPA gating), currency detection | Session-only |
-| **Device info** | OS version, device model, app version, language | Debug crashes, plan support | 90 days |
+| **Gameplay telemetry** | Session start/end, random session ID, Firebase uid, app version, platform, language, sign-in provider, game stage, sampled mammoth conversions (20%), raid outcomes, prison events, laundering unlocks, prestige, shop/boost events, meta-scam outcomes, and short client error messages | Understand which features work, tune game balance, debug problems, and prevent abuse | Up to 14 months, then deleted or aggregated where feasible |
+| **Advertising data** | Android Advertising ID (AAID), consent status, rewarded-ad placement, ad interaction/reward status | Only when real rewarded ads are enabled; used for optional rewarded ads, consent handling, frequency capping, and fraud prevention | Handled mainly by Google AdMob under Google's policies; we keep only minimal placement/reward records if needed |
+| **Approximate location** | Country/region inferred by service providers from IP address (not GPS) | Regional ad consent/compliance when ads are enabled | Session-only or as retained by the relevant provider |
+| **Device/app info** | Platform, app version, language; ad providers may also receive device model/OS info when ads are enabled | Debugging, compatibility, ad delivery, fraud prevention | Up to 14 months for our telemetry; provider retention varies |
 
 **We do NOT collect or access:** your device's precise GPS location, real phone contacts, real call logs, SMS/text messages, photos, microphone input, or web browsing history.
 
 ## 3. Legal bases (GDPR, if you're in the EEA/UK)
 
 - **Contract** — providing you the game service (save, account)
-- **Consent** — personalized ads (you can decline in the consent form on first launch or in Settings → Manage ad consent). Analytics is legitimate interest with anonymized IDs.
-- **Legitimate interest** — security, fraud prevention, debugging crashes
+- **Consent** — personalized ads, where real ads are enabled and consent is legally required. You can decline in the consent form or in Settings → Manage ad consent.
+- **Legitimate interest** — security, fraud prevention, product analytics, game balancing, and debugging
 - **Legal obligation** — tax records for in-app purchases (when we roll out IAP)
 
 ## 4. Advertising
 
-FCCT shows **rewarded video ads** — short videos you choose to watch in exchange for in-game bonuses. We do NOT show forced interstitials or banners.
+FCCT is designed to show **optional rewarded video ads** — short videos you choose to watch in exchange for in-game bonuses. We do NOT show forced interstitials or banners.
 
-Our ad partner is **Google AdMob**. When you first watch an ad, you'll see a consent form (Google's User Messaging Platform / UMP) asking whether ads can be personalized. You can:
+As of the current pre-release code, the ad flow may be stubbed for testing. When real ads are enabled, our ad partner is **Google AdMob**. When you first watch an ad, you may see a consent form (Google's User Messaging Platform / UMP) asking whether ads can be personalized. You can:
 - **Accept** — see ads relevant to your interests (usually higher payout for us; keeps FCCT free)
 - **Decline** — see generic ads, everything else unchanged
 
@@ -59,25 +59,30 @@ AdMob's privacy policy: [policies.google.com/technologies/ads](https://policies.
 
 When we enable IAP (currently disabled), purchases are processed by **Google Play Billing**. We don't see or store your credit card. Google Play stores the transaction record and shares only the purchase status and product ID with us.
 
-Refunds: handled through Google Play per their standard 48-hour policy.
+Refunds are handled through Google Play according to Google Play's policies.
 
 ## 6. Third parties we share data with
 
 | Party | What we share | Why |
 |---|---|---|
-| Google Firebase (Auth, Firestore, Analytics) | Account, save, analytics events | Backend services |
-| Google AdMob | Advertising ID, coarse region, consent status | Serving ads |
-| Google Play Billing | Purchase status, product ID | IAP transactions |
+| Google Firebase (Authentication, Cloud Firestore) | Account, cloud save, custom gameplay telemetry, auth tokens | Login, backend services, cloud save, diagnostics |
+| Google Sign-In / Android Credential Manager | Google ID token, email/display name if provided by Google | Optional Google sign-in |
+| Google AdMob | Advertising ID, coarse region, consent status, ad interaction data | Optional rewarded ads, when enabled |
+| Google Play Billing | Purchase status, product ID, purchase token/transaction reference | IAP transactions, when enabled |
 
 Each has its own privacy policy — we don't share more than the fields listed above.
 
 We do NOT sell your data. We do NOT share it with data brokers.
 
+Google Privacy Policy: [policies.google.com/privacy](https://policies.google.com/privacy)
+
+Firebase privacy and security information: [firebase.google.com/support/privacy](https://firebase.google.com/support/privacy)
+
 ## 7. Your rights
 
 ### Everyone
 - **Access** — email [fcct.support@gmail.com](mailto:fcct.support@gmail.com) and we'll send you a copy of your data
-- **Delete** — Settings → Account → Delete my account (in-app), OR email us. Full instructions and email-based path: [Account & Data Deletion](./data-deletion/). We act within 7 days and complete within 30 days.
+- **Delete** — Settings → Account → Delete my account (in-app), OR email us. Full instructions and email-based path: [Account & Data Deletion](../data-deletion/). We act within 7 days and complete within 30 days.
 - **Correct** — for account info, edit in Settings; for anything else, email us.
 
 ### EEA / UK residents
@@ -103,14 +108,14 @@ FCCT is not for children under 13. We do not knowingly collect data from users u
 
 ## 8. Security
 
-- Firestore data is encrypted at rest and in transit
+- Firebase and Firestore data are transmitted over HTTPS and encrypted at rest by Google
 - Saves are HMAC-SHA256 signed (tamper-evident)
 - Firebase App Check will be required before we allow public traffic (planned before soft launch)
 - Passwords (if you use Email sign-in) are hashed by Firebase Auth using PBKDF2 — we never see the plaintext
 
 ## 9. International data transfers
 
-Firebase project region: **europe-west1** (Belgium). Your data is stored in the EU. AdMob and Google Play Billing may process data in other regions per Google's standard contractual clauses.
+Firebase, Google Play, and AdMob may process data in countries other than where you live. Where required, Google and/or FCCT rely on appropriate transfer mechanisms such as standard contractual clauses or other legally recognized safeguards.
 
 ## 10. Changes to this policy
 
