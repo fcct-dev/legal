@@ -6,12 +6,12 @@ permalink: /data-deletion/
 
 # Account & Data Deletion — Fraud Call Center Tycoon
 
-**Effective date:** 2026-07-09
+**Effective date:** 2026-07-12
 **Publisher:** FCCT Studio
 **Contact:** [fcct.support@gmail.com](mailto:fcct.support@gmail.com)
 **App package:** `com.fcctstudio.callcentertycoon`
 
-If you signed up for a Fraud Call Center Tycoon ("FCCT") account, you have the right to delete that account and its associated data at any time. This page explains **what gets deleted, how to request deletion, and how long it takes**.
+Every FCCT player has a Firebase account — either a linked one (Email or Google) or an anonymous account created automatically on first launch. In every case, you have the right to delete that account and its associated data at any time. This page explains **what gets deleted, how to request deletion, and how long it takes**.
 
 ## 1. Fastest path — delete in the app
 
@@ -23,7 +23,7 @@ If you signed up for a Fraud Call Center Tycoon ("FCCT") account, you have the r
 
 Your account and its data are removed immediately. You will be signed out and returned to the login screen.
 
-Guests (players who chose "Continue without login") have no server-side account — their progress lives only on-device and is removed by uninstalling the app or by tapping **Danger Zone → Restart game from scratch** in Settings.
+Anonymous accounts (players who never signed in with Email or Google) can be deleted through the same in-app path — the underlying Firebase anonymous uid, its cloud save, and its telemetry are erased identically. If for any reason the account button is unavailable, you can also tap **Danger Zone → Restart game from scratch** to wipe all local state, or uninstall the app.
 
 ## 2. Alternative — email request
 
@@ -75,4 +75,5 @@ Email **[fcct.support@gmail.com](mailto:fcct.support@gmail.com)**. We aim to res
 
 ## Change log
 
+- **2026-07-12** — clarified that anonymous accounts (auto-signed-in on first launch, no email/Google required) are also deletable through the same in-app path.
 - **2026-07-09** — initial publication.

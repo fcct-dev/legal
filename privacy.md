@@ -6,14 +6,16 @@ permalink: /privacy/
 
 # Privacy Policy — Fraud Call Center Tycoon
 
-**Effective date:** 2026-07-09
+**Effective date:** 2026-07-12
 **Publisher:** FCCT Studio
 **Contact:** [fcct.support@gmail.com](mailto:fcct.support@gmail.com)
 **App package:** `com.fcctstudio.callcentertycoon`
 
 ## 1. What this app is
 
-Fraud Call Center Tycoon ("FCCT," "the game," "we") is a satirical idle-tycoon mobile game about a fictional call-center operation. All characters, schemes, and victims depicted are fictional. The game is intended for a mature audience (13+ per Google Play content rating).
+Fraud Call Center Tycoon ("FCCT," "the game," "we") is a satirical idle-tycoon mobile game about a fictional call-center operation. All characters, schemes, victims, brand names, phone numbers, and events depicted are entirely fictional; any resemblance to real people, companies, or agencies is coincidental and used for parody. The game does not teach real fraud techniques and does not endorse or promote illegal activity.
+
+The game is intended for a mature audience: **you must be at least 13 years old (16 in the EEA/UK, per GDPR Article 8)** to use the app.
 
 **Important Safety Disclaimer:** The game is a local simulation. It does not dial real phone numbers, send actual SMS/text messages, connect to cellular telephone networks, or interact with your device's actual phone dialer, contacts, or call logs in any way. All "calls" and "schemes" are fully virtual, simulated in-game text and animations.
 
@@ -21,18 +23,18 @@ Fraud Call Center Tycoon ("FCCT," "the game," "we") is a satirical idle-tycoon m
 
 We collect only the minimum needed to run the game, keep it working, and improve it.
 
-*Note: If you play using a "Guest" account, your game progress is stored only locally on your device, and no personal account identifiers or email addresses are sent to our servers.*
+*Note on accounts:* If you launch the game without signing in with email or Google, we automatically sign you in with **Firebase anonymous authentication** — a randomly generated user ID with no personal identifiers (no email, no name). Anonymous sign-in enables cloud save and analytics but does not link to any external identity. You can upgrade an anonymous account to email or Google later without losing progress.
 
 | Category | Examples | Purpose | Retention |
 |---|---|---|---|
-| **Account** | Firebase Auth user ID (uid), email if you use Email sign-in, Google account ID if you use Google Sign-In | Log you in, sync your save across devices (does not apply to Guest accounts) | Until you delete your account or 24 months of inactivity |
-| **Save data** | Your in-game progress: cash balances, workers, upgrades, schemes, timestamps | Cloud-save so you don't lose progress if you switch devices (does not apply to Guest accounts) | Same as account |
-| **Gameplay telemetry** | Session start/end, random session ID, Firebase uid, app version, platform, language, sign-in provider, game stage, sampled mammoth conversions (20%), raid outcomes, prison events, laundering unlocks, prestige, shop/boost events, meta-scam outcomes, and short client error messages | Understand which features work, tune game balance, debug problems, and prevent abuse | Up to 14 months, then deleted or aggregated where feasible |
-| **Advertising data** | Android Advertising ID (AAID), consent status, rewarded-ad placement, ad interaction/reward status | Only when real rewarded ads are enabled; used for optional rewarded ads, consent handling, frequency capping, and fraud prevention | Handled mainly by Google AdMob under Google's policies; we keep only minimal placement/reward records if needed |
+| **Account** | Firebase Auth user ID (uid — anonymous by default, or linked to your email or Google account if you choose to sign in), email if you use Email sign-in, Google account ID if you use Google Sign-In | Log you in, sync your save across devices | Until you delete your account or 24 months of inactivity |
+| **Save data** | Your in-game progress: cash balances, workers, upgrades, schemes, timestamps | Cloud-save so you don't lose progress if you switch devices | Same as account |
+| **Gameplay telemetry** | Session start / session end (with per-session aggregates: total taps, crits, mammoths spawned/closed/expired, payout totals and max, closes by role, purchases counter), random session ID, Firebase uid, app version, platform, language, sign-in provider, game stage, and rare event records (raid outcomes, prison events, laundering unlocks, prestige, shop/boost purchases, meta-scam outcomes, short client error messages) | Understand which features work, tune game balance, debug problems, and prevent abuse | Up to 14 months, then deleted or aggregated where feasible |
+| **Advertising data** | Android Advertising ID (AAID), consent status, rewarded-ad placement, ad interaction/reward status | Only when real rewarded ads are enabled in a future release (see §4). **In the current release ads are not integrated; we do not read AAID and no ad SDK is initialized.** | Handled mainly by Google AdMob under Google's policies once ads are live; we keep only minimal placement/reward records if needed |
 | **Approximate location** | Country/region inferred by service providers from IP address (not GPS) | Regional ad consent/compliance when ads are enabled | Session-only or as retained by the relevant provider |
 | **Device/app info** | Platform, app version, language; ad providers may also receive device model/OS info when ads are enabled | Debugging, compatibility, ad delivery, fraud prevention | Up to 14 months for our telemetry; provider retention varies |
 
-**We do NOT collect or access:** your device's precise GPS location, real phone contacts, real call logs, SMS/text messages, photos, microphone input, or web browsing history.
+**We do NOT collect or access:** your device's precise GPS location, real phone contacts, real call logs, SMS/text messages, photos, microphone input, web browsing history, or the Android Advertising ID (until ads are integrated in a future release).
 
 ## 3. Legal bases (GDPR, if you're in the EEA/UK)
 
@@ -45,7 +47,9 @@ We collect only the minimum needed to run the game, keep it working, and improve
 
 FCCT is designed to show **optional rewarded video ads** — short videos you choose to watch in exchange for in-game bonuses. We do NOT show forced interstitials or banners.
 
-As of the current pre-release code, the ad flow may be stubbed for testing. When real ads are enabled, our ad partner is **Google AdMob**. When you first watch an ad, you may see a consent form (Google's User Messaging Platform / UMP) asking whether ads can be personalized. You can:
+**Current release status: ads are NOT integrated.** No ad SDK is loaded, no Android Advertising ID (AAID) is read, and no ad-network requests are made. Rewarded-ad UI (buttons like "Watch ad") is hidden while ads are not integrated so nothing about ads reaches your device.
+
+When real ads are enabled in a future release, our ad partner is **Google AdMob**. When you first watch an ad, you may see a consent form (Google's User Messaging Platform / UMP) asking whether ads can be personalized. You can:
 - **Accept** — see ads relevant to your interests (usually higher payout for us; keeps FCCT free)
 - **Decline** — see generic ads, everything else unchanged
 
@@ -110,7 +114,9 @@ FCCT is not for children under 13. We do not knowingly collect data from users u
 
 - Firebase and Firestore data are transmitted over HTTPS and encrypted at rest by Google
 - Saves are HMAC-SHA256 signed (tamper-evident)
-- Firebase App Check will be required before we allow public traffic (planned before soft launch)
+- Cloud saves are uploaded on a throttled schedule and skipped when the payload is unchanged (SHA-256 content hash), which minimises the amount of data leaving your device
+- New installs are automatically signed in with **Firebase anonymous authentication** — a random uid with no personal identifiers (no email, no name required)
+- Firebase App Check will be required before we allow public production traffic (planned before soft launch)
 - Passwords (if you use Email sign-in) are hashed by Firebase Auth using PBKDF2 — we never see the plaintext
 
 ## 9. International data transfers
@@ -130,4 +136,5 @@ We'll post updates here with a new "Effective date." Material changes will trigg
 
 ## Change log
 
+- **2026-07-12** — clarified age gate (13, or 16 in EEA/UK per GDPR Art. 8); reflected anonymous-auth default for fresh installs (no more purely-local "Guest" mode); telemetry rewrite from sampled per-event to session-end aggregate counters; explicitly stated that ads are not integrated in the current release and AAID is not collected; added cloud-save hash-skip note in §8.
 - **2026-07-09** — initial publication.
